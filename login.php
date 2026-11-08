@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name']    = $user['name'];
             $_SESSION['role']    = $user['role'];
             
-            header("Location: " . ($user['role'] === 'admin' ? "admin_dashboard.php" : "index.php"));
+            header("Location: " . ($user['role'] === 'admin' ? "admin_dashboard.php" : "dashboard.php"));
             exit;
         } else {
             $error = "Email atau kata sandi tidak valid!";

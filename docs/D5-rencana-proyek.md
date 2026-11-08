@@ -24,3 +24,17 @@ Dokumen ini memuat batasan cakupan proyek, rincian pembagian kerja (Work Breakdo
 ### Fase 4: Pengujian & Evaluasi (Minggu 11–12)
 * Pengujian Sistem & User Acceptance Testing (UAT) bersama perwakilan mahasiswa dan admin.
 * Finalisasi Laporan Proyek PPL (D1–D9).
+
+### 3. Manajemen Pengkodean & Riwayat Proyek (Git & GitHub)
+
+Untuk menjaga kerapian kode dan memastikan proses pembuatan aplikasi tercatat dengan jelas, proyek SPACENEST dikelola menggunakan sistem kontrol versi **Git** dan platform **GitHub**. Pengerjaan dan penyimpanan kode dibagi ke dalam beberapa tahap yang terstruktur:
+
+* **Pembagian Tahap Pengerjaan (Commit Bertahap):**
+  - **Dokumentasi & Log:** Menyimpan seluruh file perencanaan proyek (D1–D5) serta catatan log mingguan di awal.
+  - **Database & Konfigurasi:** Menyiapkan struktur tabel database (`database.sql`) beserta file pengatur koneksinya.
+  - **Modul Autentikasi:** Membangun fitur masuk (*login*), pendaftaran (*register*), dan keluar akun (*logout*).
+  - **Fitur Utama (Pelaporan):** Membuat formulir pengaduan kerusakan sarpras beserta halaman detail laporan.
+  - **Dashboard Admin:** Mengembangkan halaman khusus pengelola/admin sarpras untuk verifikasi data dan pengelolaan aset.
+
+* **Penyimpanan di GitHub:**
+  - Seluruh riwayat dan file kode dikirimkan secara berkala ke cabang utama (*branch* `main`) pada repositori GitHub (`vabell00/SPACENEST`) agar aman dan terstruktur rapi sesuai urutan pembuatannya.

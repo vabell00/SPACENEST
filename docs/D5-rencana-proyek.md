@@ -25,7 +25,7 @@ Dokumen ini memuat batasan cakupan proyek, rincian pembagian kerja (Work Breakdo
 * Pengujian Sistem & User Acceptance Testing (UAT) bersama perwakilan mahasiswa dan admin.
 * Finalisasi Laporan Proyek PPL (D1–D9).
 
-### 3. Manajemen Pengkodean & Riwayat Proyek (Git & GitHub)
+## 3. Manajemen Pengkodean & Riwayat Proyek (Git & GitHub)
 
 Untuk menjaga kerapian kode dan memastikan proses pembuatan aplikasi tercatat dengan jelas, proyek SPACENEST dikelola menggunakan sistem kontrol versi **Git** dan platform **GitHub**. Pengerjaan dan penyimpanan kode dibagi ke dalam beberapa tahap yang terstruktur:
 

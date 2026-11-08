@@ -3,47 +3,42 @@
 Tim sepakat membangun satu produk perangkat lunak untuk pengguna nyata dalam satu semester dengan aturan kerja di bawah ini. Dokumen disimpan di docs/D1-team-charter.md, versi 1.0.
 
 ## 1. Anggota dan Peran
-* **Project Manager & Analis:** Vabellian Naoni (NPM: 41187007240006)
-  * *Tanggung jawab utama:* Jadwal, rapat, log mingguan, register risiko, komunikasi dengan pihak fakultas, analisis kebutuhan.
+- **Project Manager & Analis:** Vabellian Naoni (NPM: 41187007240006)
+  * *Tanggung jawab utama:* Jadwal, rapat, log mingguan, komunikasi dengan pihak fakultas, analisis kebutuhan.
   * *Memimpin dokumen:* D1, D4, D5, D9.
-* **Lead Developer:** Andika Cahya Syahputra (NPM: 41187007240009)
-  * *Tanggung jawab utama:* Arsitektur, basis data, logika bisnis, keamanan unggah berkas, deployment.
+- **Lead Developer:** Andika Cahya Syahputra (NPM: 41187007240009)
+  * *Tanggung jawab utama:* Arsitektur, basis data, logika bisnis, keamanan unggah berkas.
   * *Memimpin dokumen:* D6 (arsitektur dan ERD), D8 (dokumentasi teknis).
-* **UI/UX Designer, QA & Analis Sistem:** Alif Fitrah Ramadhan (NPM: 41187007240008)
-  * *Tanggung jawab utama:* Desain antarmuka mobile-friendly, test plan, pengujian, validasi data lokasi.
+- **UI/UX Designer, QA & Analis Sistem:** Alif Fitrah Ramadhan (NPM: 41187007240008)
+  * *Tanggung jawab utama:* Desain antarmuka, pengujian sistem, validasi data lokasi.
   * *Memimpin dokumen:* D2, D3, D6 (UI/UX), D7.
 
-*Catatan:* Semua anggota tetap menulis kode dan menulis dokumen. Peran menentukan siapa yang memimpin, bukan siapa yang mengerjakan sendirian.
+*Catatan:* Semua anggota tetap menulis kode dan dokumen. Peran menentukan siapa yang memimpin, bukan siapa yang mengerjakan sendirian.
 
 ## 2. Rapat dan Komunikasi
-* **Rapat tim:** Dua kali seminggu (Selasa dan Jumat, pukul 19.30–20.30, lewat Google Meet). Notulen ditulis di `log/mingguan.md` paling lambat 24 jam setelah rapat.
-* **Rapat sprint:** Sprint planning di awal dan retrospektif di akhir setiap sprint (2 minggu), bertatap muka setelah kuliah PPL.
-* **Komunikasi harian:** Grup WhatsApp tim. Keputusan yang memengaruhi scope, jadwal, atau desain wajib dicatat di Issue GitHub, bukan hanya di grup.
-* **Waktu respons:** Pesan di grup dibalas maksimal 24 jam.
+- **Rapat tim:** Dilakukan secara fleksibel menyesuaikan kebutuhan atau melalui grup WhatsApp, serta pertemuan langsung di kampus saat jam kuliah PPL. Notulen atau hasil rapat dicatat di `log/mingguan.md`.
+- **Komunikasi harian:** Melalui Grup WhatsApp tim. Setiap keputusan penting terkait perubahan fitur atau desain akan dicatat bersama agar semua anggota tahu.
+- **Waktu respons:** Pesan di grup diusahakan dibalas dalam waktu wajar agar koordinasi tidak macet.
 
-## 3. Aturan Kerja
-* Setiap pekerjaan berawal dari Issue GitHub yang punya penanggung jawab.
-* Tidak ada commit langsung ke `main`. Semua perubahan lewat pull request dan direview minimal satu anggota lain (reviewer dirotasi).
-* Pesan commit memakai format jenis: deskripsi singkat, misalnya `feat: form laporan kerusakan`.
-* Dokumen ditulis dalam Markdown di folder `docs/` dan direvisi lewat pull request seperti kode.
+## 3. Aturan Kerja & Pengkodean
+- Setiap tugas dibagi bersama dan dicatat melalui fitur *Issues* di GitHub agar jelas siapa yang mengerjakan bagian apa.
+- Pembagian tugas dilakukan bergantian secara rapi. Anggota mengunggah (*commit*) kode sesuai bagian fiturnya masing-masing dengan pesan commit yang jelas (contoh: `feat: buat form laporan`).
+- Dokumen proyek ditulis dalam format Markdown di folder `docs/`.
 
-## 4. Definition of Done (Versi Awal)
-Sebuah user story dianggap selesai jika:
-* [ ] Semua acceptance criteria terpenuhi
-* [ ] Kode sudah direview dan di-merge ke main
-* [ ] Lolos test case yang terkait
-* [ ] Tampil dan dapat dipakai dengan baik di layar ponsel (lebar minimal 360 px)
-* [ ] Berjalan di server staging
-* [ ] Dokumen terkait (SRS atau manual) sudah diperbarui
+## 4. Syarat Tugas Dianggap Selesai (Definition of Done)
+Sebuah fitur atau pekerjaan dianggap selesai jika:
+- [ ] Fitur sudah dibuat dan bisa dijalankan dengan baik di komputer lokal (`localhost`).
+- [ ] Tampilannya sudah dicoba dan rapi saat dibuka lewat *browser* HP maupun laptop.
+- [ ] Kode sudah digabungkan (*push*) ke repositori GitHub proyek.
+- [ ] Bagian dokumen atau catatan terkait sudah diperbarui jika diperlukan.
 
 ## 5. Penyelesaian Konflik
-* Perbedaan pendapat teknis dibahas di Issue, lalu diputuskan di rapat dengan suara terbanyak (2 dari 3 anggota). Dengan tiga anggota, suara tidak mungkin seimbang.
-* Konflik antaranggota dibicarakan langsung lebih dulu. Jika tidak selesai dalam satu minggu, dibawa ke dosen pengampu.
+- Perbedaan pendapat dalam ngoding atau desain didiskusikan bersama lewat grup atau saat bertemu langsung, lalu diputuskan berdasarkan kesepakatan bertiga.
+- Jika ada kendala antaranggota yang tidak bisa diselesaikan sendiri, akan dikonsultasikan bersama kepada dosen pengampu.
 
 ## 6. Konsekuensi Jika Anggota Tidak Berkontribusi
-* **Tidak hadir rapat 2 kali berturut-turut tanpa kabar:** Teguran tertulis di log mingguan.
-* **Issue lewat tenggat lebih dari 1 minggu tanpa kabar:** Issue dialihkan ke anggota lain, dicatat di log.
-* **Tidak ada commit atau dokumen selama 1 sprint:** Dilaporkan ke dosen, memengaruhi nilai peer review.
+- **Tidak aktif atau hilang kontak selama 1 minggu tanpa alasan jelas:** Akan diberi peringatan internal kelompok.
+- **Tidak ada progres kode atau kontribusi sama sekali dalam waktu lama:** Akan dilaporkan kepada dosen pengampu karena berpengaruh pada penilaian kelompok (*peer review*).
 
 ## 7. Persetujuan
-Disetujui oleh ketiga anggota pada pertemuan 1. Bukti persetujuan berupa commit pertama setiap anggota yang menambahkan namanya ke tabel peran di repositori.
+Disetujui oleh ketiga anggota pada pertemuan awal pembentukan tim.

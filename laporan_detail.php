@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once __DIR__ . '/config/database.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -27,10 +27,13 @@ $logStmt = $pdo->prepare("SELECT * FROM status_logs WHERE report_id = ? ORDER BY
 $logStmt->execute([$id]);
 $logs = $logStmt->fetchAll();
 
-include 'includes/header.php';
+include __DIR__ . '/includes/header.php';
 ?>
 
 <div class="max-w-4xl mx-auto space-y-6">
+    <a href="dashboard.php#daftar" class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm transition hover:bg-stone-100">
+        <i class="fa-solid fa-arrow-left"></i> Kembali ke daftar laporan
+    </a>
     <div class="glass-panel p-8 rounded-3xl shadow-xl">
         <div class="flex justify-between items-start border-b border-stone-200 pb-4 mb-6">
             <div>
@@ -81,4 +84,4 @@ include 'includes/header.php';
     </div>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>

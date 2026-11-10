@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once __DIR__ . '/config/database.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -51,7 +51,7 @@ $statusChip = [
 $prioDot  = ['Rendah' => 'bg-emerald-500', 'Sedang' => 'bg-amber-500', 'Tinggi' => 'bg-rose-500'];
 $barColor = ['#1c1917', '#2fbf8f', '#e07a10', '#3b82f6', '#a78bfa'];
 
-include 'includes/header.php';
+include __DIR__ . '/includes/header.php';
 ?>
 
 <div class="space-y-6 max-w-[1280px]">
@@ -63,16 +63,21 @@ include 'includes/header.php';
     <!-- Judul -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-            <h1 class="text-4xl md:text-5xl font-bold">Hi, <?= htmlspecialchars($_SESSION['name']) ?></h1>
-            <p class="mt-2 text-stone-800/80 text-lg">Sistem Pelaporan dan Monitoring Fasilitas FTST (FT &amp; Sains Terapan)</p>
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-emerald-700">Dashboard <?= $is_admin ? 'pengelola' : 'pelapor' ?></p>
+            <h1 class="mt-2 text-3xl md:text-4xl font-extrabold">Ringkasan Laporan</h1>
+            <p class="mt-2 text-stone-600">Halo, <?= htmlspecialchars($_SESSION['name']) ?>. Pantau laporan fasilitas FTST dan perkembangan penanganannya di sini.</p>
         </div>
-        <a href="laporan_buat.php" class="self-start md:self-auto shrink-0 inline-flex items-center gap-3 rounded-full bg-[#1c1917] text-white font-bold px-7 py-4 shadow-xl hover:bg-black transition">
-            <span class="w-5 h-5 rounded-full bg-amber-400 text-[#1c1917] grid place-items-center text-[10px]"><i class="fa-solid fa-plus"></i></span>Buat Laporan Baru
+        <a href="<?= $is_admin ? 'admin_dashboard.php' : 'laporan_buat.php' ?>" class="self-start md:self-auto shrink-0 inline-flex items-center gap-3 rounded-full bg-[#1c1917] text-white font-bold px-7 py-4 shadow-xl hover:bg-black transition">
+            <span class="w-5 h-5 rounded-full bg-[#2fbf8f] text-[#1c1917] grid place-items-center text-[10px]"><i class="fa-solid <?= $is_admin ? 'fa-screwdriver-wrench' : 'fa-plus' ?>"></i></span><?= $is_admin ? 'Kelola Laporan' : 'Buat Laporan Baru' ?>
         </a>
     </div>
 
     <!-- Kartu statistik -->
     <section id="statistik" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 scroll-mt-6">
+        <div class="col-span-full">
+            <h2 class="text-2xl font-bold">Statistik Laporan</h2>
+            <p class="mt-1 text-sm text-stone-600">Ringkasan jumlah laporan dan progres penanganan.</p>
+        </div>
         <?php
         $cards = [
             ['Total Laporan',       'fa-folder-open',        $statTotal,  $delta,   'bg-emerald-100 text-emerald-700', 'Bulan ini',            'text-[#1c1917]', false],
@@ -101,10 +106,10 @@ include 'includes/header.php';
 
         <!-- Distribusi masalah -->
         <section class="glass-panel lg:col-span-5 p-7">
-            <div class="flex items-start justify-between gap-3">
+            <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                    <h2 class="text-2xl font-bold">Distribusi Masalah FTST</h2>
-                    <p class="text-stone-600"><?= $is_admin ? 'Per perbandingan program studi' : 'Per kategori masalah' ?></p>
+                    <h2 class="text-xl font-bold"><?= $is_admin ? 'Distribusi Pelapor' : 'Kategori Laporan' ?></h2>
+                    <p class="text-sm text-stone-600"><?= $is_admin ? 'Jumlah laporan menurut program studi pelapor.' : 'Jumlah laporan menurut kategori fasilitas.' ?></p>
                 </div>
                 <span class="px-4 py-2 rounded-full bg-white text-sm font-bold shadow-sm">FTST <?= date('Y') ?></span>
             </div>
@@ -128,17 +133,22 @@ include 'includes/header.php';
         <section id="daftar" class="glass-panel lg:col-span-7 p-7 scroll-mt-6">
             <div class="flex items-start justify-between gap-3">
                 <div>
-                    <h2 class="text-2xl font-bold">Aktivitas Laporan Terbaru</h2>
-                    <p class="text-stone-600">Update status penanganan fasilitas</p>
+                    <h2 class="text-xl font-bold">Daftar Laporan</h2>
+                    <p class="text-sm text-stone-600"><?= $is_admin ? 'Pilih laporan untuk membuka detail dan riwayatnya.' : 'Pilih laporan untuk melihat detail dan riwayat status.' ?></p>
                 </div>
+                <span class="shrink-0 rounded-full bg-stone-100 px-3 py-1 text-xs font-bold text-stone-700"><?= count($reports) ?> laporan</span>
                 <?php if (count($reports) > 4): ?>
-                    <button type="button" id="toggleAll" class="text-orange-700 font-bold text-sm whitespace-nowrap">Lihat Semua <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    <button type="button" id="toggleAll" aria-expanded="false" class="text-emerald-800 font-bold text-sm whitespace-nowrap hover:underline">Lihat Semua <i class="fa-solid fa-arrow-right ml-1"></i></button>
                 <?php endif; ?>
             </div>
 
             <?php if (empty($reports)): ?>
                 <div class="mt-8 rounded-2xl bg-white/60 p-8 text-center text-sm text-stone-600">
-                    Belum ada laporan. <a href="laporan_buat.php" class="font-bold underline">Buat laporan pertama</a> untuk mulai memantau fasilitas.
+                    <?php if ($is_admin): ?>
+                        Belum ada laporan masuk. Laporan yang dikirim pengguna akan muncul di sini.
+                    <?php else: ?>
+                        Belum ada laporan. <a href="laporan_buat.php" class="font-bold underline">Buat laporan pertama</a> untuk mulai memantau fasilitas.
+                    <?php endif; ?>
                 </div>
             <?php else: ?>
                 <div id="list" class="mt-6 space-y-3 max-h-[26rem] overflow-y-auto pr-1">
@@ -178,7 +188,9 @@ include 'includes/header.php';
         if (none) none.classList.toggle('hidden', shown > 0 || !items.length);
     }
     if (btn) btn.addEventListener('click', function () {
-        all = !all; btn.firstChild.nodeValue = all ? 'Ringkas ' : 'Lihat Semua ';
+        all = !all;
+        btn.setAttribute('aria-expanded', String(all));
+        btn.firstChild.nodeValue = all ? 'Ringkas ' : 'Lihat Semua ';
         render();
     });
     if (q) {
@@ -189,4 +201,4 @@ include 'includes/header.php';
 })();
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>

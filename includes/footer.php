@@ -7,6 +7,31 @@
 </footer>
 
 <script>
+// Keep the sidebar highlight in sync with dashboard sections.
+(function () {
+    var links = Array.from(document.querySelectorAll('.site-sidebar a'));
+    if (!links.length) return;
+
+    function updateActiveLink() {
+        var current = new URL(window.location.href);
+        var active = links.find(function (link) {
+            var target = new URL(link.href, current);
+            return target.pathname === current.pathname
+                && (current.hash ? target.hash === current.hash : !target.hash);
+        });
+
+        links.forEach(function (link) {
+            var isActive = link === active;
+            link.classList.toggle('on', isActive);
+            if (isActive) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
+    }
+
+    updateActiveLink();
+    window.addEventListener('hashchange', updateActiveLink);
+})();
+
 // Pencarian suara (hanya tampil bila browser mendukung)
 (function () {
     var mic = document.getElementById('mic'), q = document.getElementById('q');

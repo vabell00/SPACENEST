@@ -40,11 +40,15 @@ CREATE TABLE IF NOT EXISTS `status_logs` (
 -- Data Awal (Akun Sample)
 -- Password untuk kedua akun ini adalah: password123
 INSERT IGNORE INTO `users` (`name`, `email`, `password`, `role`, `prodi`) VALUES
-('Mahasiswa FTST', 'mahasiswa@unisma.ac.id', '$2y$10$8sZYyZU8A8qXPO/suv2KZ.Asou.k1mYCu.MWWi9VWm2LMvq.Jql36', 'pelapor', 'Teknik Informatika'),
-('Admin FTST', 'admin.ftst@unisma.ac.id', '$2y$10$8sZYyZU8A8qXPO/suv2KZ.Asou.k1mYCu.MWWi9VWm2LMvq.Jql36', 'admin', NULL)
+('Mahasiswa FTST', 'mahasiswa@unisma.ac.id', '$2y$10$CuUmW9QoQtBbzEtk3uVWe.KavY4iDPOuiueTFUQD.daeFs2F4m/QO', 'pelapor', 'Teknik Informatika'),
+('Admin FTST', 'admin.ftst@unisma.ac.id', '$2y$10$CuUmW9QoQtBbzEtk3uVWe.KavY4iDPOuiueTFUQD.daeFs2F4m/QO', 'admin', NULL)
 ON DUPLICATE KEY UPDATE
   `password` = IF(
-    `password` = '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1q9A1a9t9b3mGfW1g7hJ8kL2mN3oP4q',
+    `password` IN (
+      '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1q9A1a9t9b3mGfW1g7hJ8kL2mN3oP4q',
+      '$2y$10$8sZYyZU8A8qXPO/suv2KZ.Asou.k1mYCu.MWWi9VWm2LMvq.Jql36',
+      '$2y$10$0mT1JjCNL0/EgaKSVbYl.l1.Ovxm4Q0ZpaJCcV.jCnDPmpqeVLm2'
+    ),
     VALUES(`password`),
     `password`
   );

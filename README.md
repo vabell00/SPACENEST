@@ -24,3 +24,7 @@ Akun demo setelah mengimpor database:
 
 - Pelapor: `mahasiswa@unisma.ac.id` / `password123`
 - Admin: `admin.ftst@unisma.ac.id` / `password123`
+
+Jika akun demo lama sudah ada tetapi kata sandinya tidak cocok, impor ulang `database.sql`.
+Impor memperbarui kata sandi hanya jika masih berupa hash bawaan lama yang tidak valid;
+kata sandi akun yang sudah diubah sendiri tidak ditimpa.

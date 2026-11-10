@@ -79,3 +79,56 @@
   - Meminta mereka mengimpor `database.sql` ke `spacenest_db` di XAMPP masing-masing sesuai panduan `README.md`.
 - [ ] **Manajemen Tugas Pertama (Sprint 1):**
   - Membuat **Issue #1** (Pengembangan Fitur/UI Utama oleh Andika) dan **Issue #2** (Perancangan Asset UI/Pengujian oleh Alif) pada tab *Issues* GitHub.
+
+---
+
+## MINGGU 2: Integrasi Tim, Perbaikan Struktur Root, & Sinkronisasi Environment
+
+* **Tanggal Execution:** 10 November 2026
+* **Penanggung Jawab / PM:** Vabellian Naoni
+* **Target Utama:** Merapikan direktori proyek ke root directory, mengimplementasikan workflow Feature Branching & Pull Request (PR) untuk redesign UI autentikasi, menyinkronkan file database `spacenest_db`, serta memastikan seluruh lingkungan XAMPP lokal terhubung lancar di branch `main`.
+
+---
+
+### 1. Rincian Kronologi & Aktivitas Teknis (What Was Done)
+
+#### A. Restrukturisasi Direktori Proyek (`fix` / `refactor`)
+1. **Eliminasi Subfolder Ganda (`ed99373`):**
+   - Memindahkan seluruh file utama (`index.php`, `login.php`, `register.php`, `dashboard.php`, `admin_dashboard.php`, `database.sql`, dll.) dari dalam subfolder ganda (`SPACENEST-main`) langsung ke *root directory* repositori.
+   - Menyesuaikan struktur folder `config/`, `includes/`, `assets/`, `docs/`, dan `log/` agar dapat diakses tanpa hambatan oleh Web Server Apache XAMPP.
+
+#### B. Redesign UI Autentikasi & Git Workflow (`style` / `feat`)
+1. **Pembaruan Halaman Login & Register (`a5895f4`):**
+   - Mengubah skema warna dan tata letak antarmuka `login.php` dan `register.php` agar lebih modern dan sesuai standar visual SPACENEST.
+2. **Penerapan Feature Branching & Pull Request (PR) Workflow:**
+   - **Feature Branching (`1-pembaruan-skema-warna-tampilan-halaman-login-redesign-pewarnaam`):** Mengisolasi pengerjaan fitur/redesign tampilan ke dalam cabang terpisah agar perubahan yang masih diuji coba tidak mengganggu kestabilan kode di branch utama (`main`).
+   - **Pull Request #2 & #3 (`aafb6aa` & `780156b`):** Pengajuan izin penggabungan kode dari feature branch ke branch `main`. Melalui proses *code review* dan verifikasi bersama, PR disetujui dan di-merge agar fitur baru resmi masuk ke kode utama proyek.
+   - **Remote & Local Sync (`4dd5292` & `63dc85e`):** Melakukan sinkronisasi riwayat commit antara GitHub remote dan XAMPP lokal agar lingkungan pengembangan kedua pengembang (`vabell00` dan `cahya01`) tetap identik.
+
+#### C. Sinkronisasi Database & Kredensial Admin (`feat` / `docs`)
+1. **Pembaruan Skema Database (`6ce5c25`):**
+   - Memperbarui skrip `database.sql` dengan enkripsi password standar dan penyesuaian tabel untuk akun admin.
+2. **Pembaruan Dokumentasi Testing (`README.md`):**
+   - Mengisi panduan kredensial pengujian lokal terbaru di `README.md`:
+     - **Pelapor:** `mahasiswa@unisma.ac.id` / `password123`
+     - **Admin:** `admin.ftst@unisma.ac.id` / `password123`
+
+---
+
+### 2. Troubleshooting & Verifikasi Environment Lokal
+
+1. **Uji Coba Sinkronisasi Database (`database.sql`):**
+   - *Tantangan:* Gagal login pada environment lokal `vabell00` setelah penyesuaian skema warna login oleh `cahya01`.
+   - *Penyebab:* File `database.sql` lokal belum di-impor ulang setelah ada pembaruan hash password di GitHub.
+   - *Solusi:* Melakukan `git pull origin main`, mengimpor ulang `database.sql` ke database `spacenest_db` via phpMyAdmin, serta mengonfirmasi parameter koneksi pada `config/database.php`.
+2. **Verifikasi Pengujian Form Login:**
+   - Berhasil login ke dashboard menggunakan akun mahasiswa dan admin tanpa kendala (*100% Pass*).
+
+---
+
+### 3. Rencana Tindak Lanjut (Next Action Items)
+
+- [ ] **Pengembangan Formulir Pelaporan Sarana (Sprint 1):**
+  - Mengembangkan antarmuka dan penanganan backend untuk pemuatan laporan kerusakan fasilitas pada `laporan_buat.php`.
+- [ ] **Pengembangan Dashboard Admin:**
+  - Menyusun tabel status pengajuan dan aksi validasi laporan oleh pihak sarpras di `admin_dashboard.php`.

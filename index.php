@@ -59,8 +59,7 @@ function bar(int $n, array $st): string {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1c1917; margin: 0; background-color: #fafaf9;
-               background-image: radial-gradient(rgba(28,25,23,.08) 1px, transparent 1px); background-size: 22px 22px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1c1917; margin: 0; background-color: #fafaf9; }
         h1, h2, h3 { letter-spacing: -0.025em; }
         .num { font-variant-numeric: tabular-nums; }
         p, li, label, button, input { letter-spacing: 0; }
